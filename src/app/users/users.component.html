@@ -1,0 +1,16 @@
+<app-user-add></app-user-add>
+
+<table width="600px" align="center" border="1">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+  <ng-template ngFor let-user [ngForOf]="users.getUsers()" let-i="index">
+      <tr>
+        <td>{{ i+1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+  </ng-template>
+</table>
