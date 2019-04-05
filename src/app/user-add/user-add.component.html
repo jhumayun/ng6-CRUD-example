@@ -2,10 +2,26 @@
   <div>
       <label>Name:</label>
       <input type="text" formControlName="name"/>
+      <div *ngIf="(UF.name.dirty || UF.name.touched || isSubmitted) && UF.name.invalid" class="error">
+          <div *ngIf="UF.name.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="UF.name.errors.minlength">
+            name must be at least 3 characters long.
+          </div>
+      </div>
   </div>
   <div>
       <label>Eamil:</label>
       <input type="text" formControlName="email">
+      <div *ngIf="(UF.email.dirty || UF.email.touched || isSubmitted) && UF.email.invalid" class="error">
+          <div *ngIf="UF.email.errors.required">
+            Email is required.
+          </div>
+          <div *ngIf="UF.email.errors.email">
+            Email should be valid.
+          </div>
+      </div>
   </div>
   <div>
       <label>Is contacted?</label>

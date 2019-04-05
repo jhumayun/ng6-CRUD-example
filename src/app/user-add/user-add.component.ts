@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/DataStructures/User';
+import { UsersService } from 'src/app/services/users.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -11,9 +12,13 @@ export class UserAddComponent implements OnInit {
 
   public User: User = new User();
 
+  isSubmitted: boolean = false;
   userForm: FormGroup;
 
-  constructor(public formBuilder: FormBuilder) {
+  constructor(
+    public formBuilder: FormBuilder,
+    private uservice: UsersService
+  ) {
     this.userForm = this.formBuilder.group({
       name: [this.User.name,[
         Validators.required,
@@ -36,10 +41,17 @@ export class UserAddComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.isSubmitted = true;
     if (this.userForm.invalid) {
       return;
     }
-    alert('submited');
+    this.User.name = this.UF.name.value;
+    this.User.email = this.UF.email.value;
+    this.User.isContacted = this.UF.isContacted.value;
+    this.uservice.addUser(this.User);
+
+    this.userForm.reset();
+    this.isSubmitted = false;
   }
 
 }

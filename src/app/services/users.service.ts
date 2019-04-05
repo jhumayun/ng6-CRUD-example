@@ -25,4 +25,9 @@ export class UsersService {
   getUsers(): User[] {
     return this.Users;
   }
+
+  addUser(user: User): void {
+    this.Users.push(user);
+  }
+
 }
