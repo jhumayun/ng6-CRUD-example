@@ -1,4 +1,4 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<form *ngIf="mode!='hide'" [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div>
       <label>Name:</label>
       <input type="text" formControlName="name"/>
@@ -29,7 +29,8 @@
   </div>
   
   <div>
-      <button type="button">Cancel</button>
-      <button type="submit">Submit</button>
+      <button (click)='cancel()' type="button">Cancel</button>
+      <button *ngIf="mode=='add'" type="submit">Submit</button>
+      <button *ngIf="mode=='edit'" type="submit">Update</button>
   </div>
 </form>

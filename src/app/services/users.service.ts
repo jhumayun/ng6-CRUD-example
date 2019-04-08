@@ -30,4 +30,12 @@ export class UsersService {
     this.Users.push(user);
   }
 
+  getUserByIndex(i: number): User{
+    return this.Users[i]
+  }
+
+  editUser(editable: User, index: number): void {
+    this.Users[index] = editable;
+  }
+
 }

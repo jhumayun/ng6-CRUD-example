@@ -1,16 +1,21 @@
-<app-user-add></app-user-add>
+<app-user-add [mode]="mode" [editIndex]='editIndex' (modeEmit)="modeChanged($event)"></app-user-add>
+<button *ngIf="mode!='add' && mode!='edit'" (click)="showAddForm()">Add new User</button>
 
 <table width="600px" align="center" border="1">
   <tr>
     <th>#</th>
     <th>Name</th>
     <th>Email</th>
+    <th>Actions</th>
   </tr>
   <ng-template ngFor let-user [ngForOf]="users.getUsers()" let-i="index">
       <tr>
         <td>{{ i+1 }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
+        <td>
+          <a (click)="edit(i)">Edit</a>
+        </td>
       </tr>
   </ng-template>
 </table>
